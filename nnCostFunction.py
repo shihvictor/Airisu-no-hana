@@ -22,7 +22,7 @@ def nnCostFunction(nn_params, X, y, INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE, OUTPUT_
     C = np.identity(OUTPUT_LAYER_SIZE, dtype=int)
     y_Logical = np.zeros((m, OUTPUT_LAYER_SIZE), dtype=int)
     for i in range(0, m):
-        y_Logical[i, :] = C[int(y[i]), :]# class 0 = [1, 0, 0], class 1 = [0, 1, 0], etc...
+        y_Logical[i, :] = C[int(y[i]-1), :]# class 0 = [1, 0, 0], class 1 = [0, 1, 0], etc...
 
     # astype(float) changes the elts of A_3 from dtype('O') = objects TO float.
     j_temp = -1/m * np.sum(np.multiply(y_Logical, np.log(A_3.astype(float))) + np.multiply((1 - y_Logical), np.log(1 - A_3.astype(float))))

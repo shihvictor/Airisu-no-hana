@@ -16,5 +16,5 @@ Train NN:
     perform forward propagation and then back propagation using example x(i), y(i)
     get gradient matrix for layers 2
 
-Gradient checking?
+Gradient checking: DONE
 Error Analysis?
