@@ -12,6 +12,5 @@ def testCaseCheck():
     nl = 4
     result = nnCostFunction(nn, Xex, y, il, hl, nl, lmbda)
     print("J = " + str(result[0]))
-    print("grad = \n" + str(result[1]))
 
     checkNNGrads(nn, Xex, y, il, hl, nl, lmbda)
