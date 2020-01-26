@@ -11,6 +11,7 @@ from predict import predict
 from learningCurve import learningCurve
 from testCaseCheck import testCaseCheck
 from learningCurveLambda import learningCurveLambda
+from featureScaling import featureScaling
 
 
 print("RUNNING ML")
@@ -22,13 +23,14 @@ print("RUNNING ML")
 """
 INPUT_LAYER_SIZE = 4    # Number of activation elements in the Input Layer of NN (not including bias element).
 HIDDEN_LAYER_SIZE = 4   # Number of activation elements in the hidden layer of NN.
-OUTPUT_LAYER_SIZE = 3   # Number of activation elements in the Output layer of NN.
-# NUMBER_OF_CLASSES = 3
-""""""
+OUTPUT_LAYER_SIZE = 3   # Number of activation elements in the Output layer of NN (equals to num of classes).
+
+""" For testing.
 # INPUT_LAYER_SIZE = 400
 # HIDDEN_LAYER_SIZE = 25
 # OUTPUT_LAYER_SIZE = 10
 # NUMBER_OF_CLASSES = 10
+"""
 
 """ Initializing Parameters(weights) for NN. """
 initial_Theta1 = randInitializeWeights(INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE) # Weights for input layer.
@@ -52,9 +54,9 @@ print("Dimensions: ", dataset.shape)
 temp1 = dataset.to_numpy() # changes dataframe to numpy matrix for numpy matrix slicing.
 """--- For .mat file ---"""
 # temp1 = dataset
-""""""
+"""---"""
 
-np.random.shuffle(temp1) # Shuffle order of given data to ???
+np.random.shuffle(temp1) # Shuffle order of given data for randomness.
 
 X = temp1[:, 0:temp1.shape[1]-1] # Matrix of features for each example. Each row represents features of one example.
 y = temp1[:, temp1.shape[1]-1] # Matrix of labels for each example. Each row represents labels of one example.
@@ -62,6 +64,7 @@ y = y[np.newaxis, :].T # newaxis increases current dimension by 1.
 m = X.shape[0] # Storing number of examples.
 n = X.shape[1] # Storing number of features.
 X = X.astype(float)
+
 
 """Change labels from string to integer representation."""
 """--- For Iris dataset ---"""
@@ -72,6 +75,11 @@ for i in range(0, m):
         y[i] = 2
     elif y[i] == "Iris-virginica":
         y[i] = 3
+
+
+"""Feature scaling"""
+X = featureScaling(X)
+
 
 """ Partition Dataset into Training, Cross Validation, and Test set. """
 X_Train = X[0:int(m*.6), :]
@@ -127,7 +135,7 @@ plt.legend(loc='upper right', shadow=True, fontsize='x-large', numpoints=1)
 plt.show()
 
 print("\n=============== Train NN & Predict ===============")
-lmbda = 2
+lmbda = 0.03
 costfun = lambda nnP: nnCostFunction(nnP, X_Train, y_Train, INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE, OUTPUT_LAYER_SIZE, lmbda)[0]
 gradfun = lambda nnP: nnCostFunction(nnP, X_Train, y_Train, INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE, OUTPUT_LAYER_SIZE, lmbda)[1]
 

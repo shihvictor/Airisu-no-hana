@@ -1,8 +1,8 @@
 import numpy as np
 from nnCostFunction import nnCostFunction
 
-def checkNNGrads(nn_Params, X_Train, y_Train, INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE, OUTPUT_LAYER_SIZE, lmbda) :
-    
+def checkNNGrads(nn_Params, X_Train, y_Train, INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE, OUTPUT_LAYER_SIZE, lmbda):
+    """Compares the Analytical gradient with the Numerical gradient to ensure correct implementation of the backpropagation algorithm."""
     
     numGrad = np.zeros((nn_Params.shape[0], 1))
     X_TrainForNum = X_Train[0:9, :]

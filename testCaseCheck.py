@@ -6,7 +6,7 @@ def testCaseCheck():
     hl = 2
     il = 2
     lmbda = 4
-    y = np.array([[3], [1], [2]])
+    y = np.array([[4], [2], [3]])
     Xex = np.cos(np.array([[1, 2], [3, 4], [5, 6]]))
     nn = np.true_divide(np.arange(1, 19), 10)
     nl = 4

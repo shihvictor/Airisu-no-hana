@@ -12,9 +12,11 @@ def learningCurve(X, y, X_CV, y_CV, lmbda, INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE, 
         error_Train[i-1, :] = nnCostFunction(nn_params, X[0:i, :], y[0:i, :], INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE, OUTPUT_LAYER_SIZE, 0)[0]
         error_CV[i-1, :] = nnCostFunction(nn_params, X_CV, y_CV, INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE, OUTPUT_LAYER_SIZE, 0)[0]
 
-    if np.isfinite(error_Train).any() == False:
+    if np.isfinite(error_Train).all() == False:
+        print("\n===========NAN VALUE(S) DETECTED============\n")
         print(nn_params)
-    if np.isfinite(error_CV).any() == False:
+    if np.isfinite(error_CV).all() == False:
+        print("\n===========NAN VALUE(S) DETECTED============\n")
         print(nn_params)
 
     return error_Train, error_CV
