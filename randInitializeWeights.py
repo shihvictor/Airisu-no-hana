@@ -1,6 +1,7 @@
 import numpy as np
 
 def randInitializeWeights(layerIn, layerOut):
+    """Randomly initializes the weights of the NN."""
     print("Initializing weights.")
     
     # scales random values to range  (-epsilon_init, epsilon_init). 

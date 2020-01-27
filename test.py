@@ -20,15 +20,22 @@
 # print('sklearn: {}'.format(sklearn.__version__))
 import numpy as np
 
-a = np.zeros((4, 1), dtype=int)
-for i in range(0, 4):
-    a[i] = 1
+# a = np.zeros((4, 1), dtype=int)
+# for i in range(0, 4):
+#     a[i] = 1
 
-aa = 2
+# aa = 2
 
-bb = 3.1
+# bb = 3.1
 
-cc = aa*bb
-print(type(aa))
-print(type(bb))
-print(type(cc))
+# cc = aa*bb
+# print(type(aa))
+# print(type(bb))
+# print(type(cc))
+
+one = np.array([0, 1, 2, 3])
+two = np.array([3, 3, 3, 3])
+result = (one == 2)
+print(result)
+result = result.astype(int)
+print(result)

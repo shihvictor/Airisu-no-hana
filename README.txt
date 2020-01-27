@@ -17,4 +17,7 @@ Train NN:
     get gradient matrix for layers 2
 
 Gradient checking: DONE
-Error Analysis?
+Error Analysis:
+    Learning Curves
+    F1-score = 2 * (precision * recall) / (precision + recall)
+        https://towardsdatascience.com/multi-class-metrics-made-simple-part-ii-the-f1-score-ebe8b2c2ca1

@@ -12,7 +12,7 @@ from learningCurve import learningCurve
 from testCaseCheck import testCaseCheck
 from learningCurveLambda import learningCurveLambda
 from featureScaling import featureScaling
-
+from f1score import f1score
 
 print("RUNNING ML")
 #Given data is already feature scaled.
@@ -147,11 +147,12 @@ Hyp = predict(Theta_1, Theta_2, X_Train)
 HypResult = [Hyp == y_Train]
 trainAcc = float(np.sum(np.array([Hyp == y_Train], dtype = int))) / float(y_Train.shape[0]) * 100 # Percent accuracy of hypothesis on training set.
 print("Training set accuracy : " + str(trainAcc))
+f1score(Hyp, y_Train)
 
 Hyp = predict(Theta_1, Theta_2, X_Test)
 test1 = [Hyp == y_Test]
 testAcc = float(np.sum(np.array([Hyp == y_Test], dtype = int))) / float(y_Test.shape[0]) * 100 # Percent accuracy of hypothesis on test set.
 print("Test set accuracy : " + str(testAcc))
-
+f1score(Hyp, y_Test)
 
 print("\n===============FINISHED===============")

@@ -3,6 +3,7 @@ from nnCostFunction import nnCostFunction
 from trainNN import trainNN
 
 def learningCurve(X, y, X_CV, y_CV, lmbda, INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE, OUTPUT_LAYER_SIZE, m):
+    """Calculates the training set error and cross validation set error w.r.t an increasing number of training examples."""
     #m = X.shape[0]
     error_Train = np.zeros((m, 1))
     error_CV = np.zeros((m, 1))

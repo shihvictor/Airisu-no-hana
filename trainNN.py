@@ -4,6 +4,7 @@ from nnCostFunction import nnCostFunction
 from randInitializeWeights import randInitializeWeights
 
 def trainNN(X, y, lmbda, INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE, OUTPUT_LAYER_SIZE):
+    """Trains the NN."""
     initial_Theta1 = randInitializeWeights(INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE)
     initial_Theta2 = randInitializeWeights(HIDDEN_LAYER_SIZE, OUTPUT_LAYER_SIZE)
     nn_Params = np.hstack((np.ravel(initial_Theta1.T), np.ravel(initial_Theta2.T)))

@@ -2,6 +2,11 @@ import numpy as np
 from sigmoid import sigmoid
 
 def predict(Theta_1, Theta_2, X):
+    """Predicts the label of the features given.
+
+    pre: Theta_1 and Theta_2 should be already trained.
+    """
+
     m = X.shape[0]
     A_1 = np.hstack((np.ones((m, 1)), X))
     Z_2 = A_1.dot(Theta_1.T)
