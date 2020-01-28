@@ -23,6 +23,6 @@ def f1score(predicted, actual):
 
     precision = PN_Matrix[:, 0] / (PN_Matrix[:, 0] + PN_Matrix[:, 2])
     recall = PN_Matrix[:, 0] / (PN_Matrix[:, 0] + PN_Matrix[:, 1])
-    f1 = 2*precision*recall/(precision+recall)
-    # print("f1: " + str(f1)) # This checks my own implementation of f1-score.
+    f1 = 2*precision*recall/(precision+recall) # This checks my own implementation of f1-score.
+    # print("f1: " + str(f1)) 
     print(metrics.classification_report(actual, predicted, digits = 3))

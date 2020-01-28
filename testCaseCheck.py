@@ -2,8 +2,16 @@ import numpy as np
 from nnCostFunction import nnCostFunction
 from checkNNGrads import checkNNGrads
 
+
 def testCaseCheck():
     """Checking nnCostFunction implementation by using a test case from Coursera Stanford Machine Learning. https://www.coursera.org/learn/machine-learning/discussions/weeks/5/threads/uPd5FJqnEeWWpRIGHRsuuw"""
+    """
+    Title: Test cases for ex4 nncostFunction()
+    Author: Tom Mosher
+    Date: Jan 27, 2020
+    Code version: NA
+    Availability: https://www.coursera.org/learn/machine-learning/discussions/weeks/5/threads/uPd5FJqnEeWWpRIGHRsuuw
+    """
     hl = 2
     il = 2
     lmbda = 4

@@ -5,8 +5,8 @@ def checkNNGrads(nn_Params, X_Train, y_Train, INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZ
     """Compares the Analytical gradient with the Numerical gradient to ensure correct implementation of the backpropagation algorithm."""
     
     numGrad = np.zeros((nn_Params.shape[0], 1))
-    X_TrainForNum = X_Train[0:9, :]
-    y_TrainForNum = y_Train[0:9, :]
+    # X_TrainForNum = X_Train[0:9, :]
+    # y_TrainForNum = y_Train[0:9, :]
     eps = 10**(-4)
     nn_Params_1 = np.copy(nn_Params)
     nn_Params_2 = np.copy(nn_Params)
@@ -23,5 +23,5 @@ def checkNNGrads(nn_Params, X_Train, y_Train, INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZ
 
     print("Left: Analytical gradient, Right: Numerical gradient")
     print(np.hstack((grad, numGrad)))
-    diff = np.linalg.norm(numGrad-grad)/np.linalg.norm(numGrad+grad);
+    diff = np.linalg.norm(numGrad-grad)/np.linalg.norm(numGrad+grad)
     print("diff = " + str(diff))

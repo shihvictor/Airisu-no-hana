@@ -15,8 +15,6 @@ from featureScaling import featureScaling
 from f1score import f1score
 
 print("RUNNING ML")
-#Given data is already feature scaled.
-
 
 """--- Set up architecture ---
 1 input layer, 1 hidden layer, 1 output layer.
@@ -37,7 +35,7 @@ initial_Theta1 = randInitializeWeights(INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE) # We
 initial_Theta2 = randInitializeWeights(HIDDEN_LAYER_SIZE, OUTPUT_LAYER_SIZE) # Weights for hidden layer.
 nn_Params = np.hstack((np.ravel(initial_Theta1.T), np.ravel(initial_Theta2.T))) # Combines Theta matrices together into a 1 dimensional vector for scipy.optimize.minimize.
 
-print("Loading Iris dataset.")
+print("\nLoading Iris dataset.")
 dataset = pd.read_csv('iris.csv', header = None)
 
 """--- Digit recog dataset ---
@@ -56,6 +54,7 @@ temp1 = dataset.to_numpy() # changes dataframe to numpy matrix for numpy matrix 
 # temp1 = dataset
 """---"""
 
+print("\n=============== Dataset preparation ===============")
 np.random.shuffle(temp1) # Shuffle order of given data for randomness.
 
 X = temp1[:, 0:temp1.shape[1]-1] # Matrix of features for each example. Each row represents features of one example.
@@ -64,7 +63,6 @@ y = y[np.newaxis, :].T # newaxis increases current dimension by 1.
 m = X.shape[0] # Storing number of examples.
 n = X.shape[1] # Storing number of features.
 X = X.astype(float)
-
 
 """Change labels from string to integer representation."""
 """--- For Iris dataset ---"""
@@ -76,10 +74,8 @@ for i in range(0, m):
     elif y[i] == "Iris-virginica":
         y[i] = 3
 
-
 """Feature scaling"""
 X = featureScaling(X)
-
 
 """ Partition Dataset into Training, Cross Validation, and Test set. """
 X_Train = X[0:int(m*.6), :]
@@ -93,9 +89,9 @@ y_Train = y_Train.astype(int)
 y_CV = y_CV.astype(int)
 y_Test = y_Test.astype(int)
 
-
-print("\n================== CHECKING NN GRADIENTS ==================")
-checkNNGrads(nn_Params, X_Train, y_Train, INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE, OUTPUT_LAYER_SIZE, 0)
+print("\n NN gradient checking disabled.")
+# print("\n================== CHECKING NN GRADIENTS ==================")
+#checkNNGrads(nn_Params, X_Train, y_Train, INPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE, OUTPUT_LAYER_SIZE, 0)
 
 print("\n=============== Test case checking ===============")
 testCaseCheck()
@@ -144,13 +140,11 @@ Theta_1 = np.reshape(result.x[0:HIDDEN_LAYER_SIZE*(INPUT_LAYER_SIZE+1)], (HIDDEN
 Theta_2 = np.reshape(result.x[HIDDEN_LAYER_SIZE*(INPUT_LAYER_SIZE+1):], (OUTPUT_LAYER_SIZE, HIDDEN_LAYER_SIZE+1), order = 'F')
 
 Hyp = predict(Theta_1, Theta_2, X_Train)
-HypResult = [Hyp == y_Train]
 trainAcc = float(np.sum(np.array([Hyp == y_Train], dtype = int))) / float(y_Train.shape[0]) * 100 # Percent accuracy of hypothesis on training set.
 print("Training set accuracy : " + str(trainAcc))
 f1score(Hyp, y_Train)
 
 Hyp = predict(Theta_1, Theta_2, X_Test)
-test1 = [Hyp == y_Test]
 testAcc = float(np.sum(np.array([Hyp == y_Test], dtype = int))) / float(y_Test.shape[0]) * 100 # Percent accuracy of hypothesis on test set.
 print("Test set accuracy : " + str(testAcc))
 f1score(Hyp, y_Test)
